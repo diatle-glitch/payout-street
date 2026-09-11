@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Payout Street — Night Circuit</title>
+<meta name="description" content="A 24-hour live arcade race of eight prop firms. Cars only move when a trader gets paid.">
+<link rel="icon" href="brand/favicon/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Saira+Condensed:wght@500;600;700&family=Chakra+Petch:ital,wght@0,600;0,700;1,600;1,700&display=swap">
+<link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="pad">
+    <div class="stage">
+      <canvas id="ps-view" width="1440" height="660"></canvas>
+      <div class="demo">DEMO · FIGURES ARE SIMULATED</div>
+      <div class="lockup">
+        <div class="word">PAYOUT<br><span class="gold">STREET</span></div>
+        <div class="live-row">
+          <div class="pill"><span class="dot"></span><span class="pill-txt" id="ps-live">LIVE</span></div>
+          <div class="sess">THU 18:00 → FRI 18:00 EST</div>
+        </div>
+        <div class="pres-row">
+          <span class="pres-lbl">PRESENTED BY</span>
+          <div class="pres-mark"><span class="tri"></span><span class="nm">NINJATRADER</span></div>
+        </div>
+      </div>
+      <div class="tr">
+        <div class="circ">NIGHT CIRCUIT</div>
+        <div class="flag-lbl">TO FLAG</div>
+        <div id="ps-flag">15:53:26</div>
+        <div class="lights"><span class="red"></span><span class="red"></span><span class="red"></span><span class="red"></span><span class="red"></span><span class="green"></span></div>
+        <div class="phase" id="ps-phase">MIDDAY GRIND</div>
+        <div style="display:flex;gap:8px;pointer-events:auto">
+          <button class="icon-btn" id="ps-mute" type="button">OFF</button>
+          <button class="icon-btn" id="ps-pause" type="button" aria-label="Pause">II</button>
+        </div>
+      </div>
+      <div class="tape">
+        <div class="tape-lab">PIT WALL</div>
+        <div class="tape-mask"><div class="tape-track" id="ps-tape"></div></div>
+      </div>
+      <div id="ps-tower"></div>
+      <div class="bl">
+        <div class="map"><svg id="ps-blips" width="148" height="96" viewBox="0 0 148 96"></svg></div>
+      </div>
+      <div class="bc"><div id="ps-radio"><span id="ps-radio-text">PIT RADIO STANDING BY</span></div></div>
+      <div class="br">
+        <div class="paidline">PAID THIS SESSION <span id="ps-paid">$409.1k</span></div>
+        <div class="paidline">LAPS <span id="ps-laps">78</span></div>
+        <div id="ps-toast" style="display:none"></div>
+      </div>
+      <div id="ps-overlay">
+        <div class="panel">
+          <div id="ps-screen-menu" style="display:none">
+            <div class="title">PAYOUT <span class="gold">STREET</span></div>
+            <div class="rule"></div>
+            <div class="menu-col">
+              <button class="menu-row on" data-go="race" type="button">▶ RIDE</button>
+              <button class="menu-row" data-go="podium" type="button">▮ STANDINGS</button>
+              <button class="menu-row" data-go="boards" type="button">▣ BOARDS</button>
+              <button class="menu-row" data-go="rules" type="button">◈ RULES</button>
+              <button class="menu-row" data-go="method" type="button">✦ METHOD</button>
+              <button class="menu-row" id="ps-sound" type="button">♪ <span id="ps-sound-label">SOUND OFF</span></button>
+              <button class="menu-row" data-go="race" type="button">⎋ QUIT TO GARAGE</button>
+            </div>
+          </div>
+          <div id="ps-screen-rules" style="display:none">
+            <div class="title">RULES</div>
+            <p class="hint">01 · Eight firms. One night circuit. 24 hours.</p>
+            <p class="hint">02 · Nobody moves unless they pay a trader.</p>
+            <p class="hint">03 · Distance is money out the door.</p>
+            <p class="hint">04 · No firm can buy an inch of asphalt.</p>
+            <button class="gold-btn" data-go="race" type="button">RIDE</button>
+          </div>
+          <div id="ps-screen-method" style="display:none">
+            <div class="title">METHOD</div>
+            <p class="hint">Chain is law. Rails are evidence. Discord is gossip.</p>
+            <p class="hint">Firms may buy trackside boards. That purchase never affects position.</p>
+            <button class="gold-btn" data-go="race" type="button">RIDE</button>
+          </div>
+          <div id="ps-screen-boards" style="display:none">
+            <div class="title">BOARDS</div>
+            <p class="hint">Sponsors buy walls, never position. AD · NOT A RANKING.</p>
+            <div class="inv" id="ps-inv"></div>
+            <button class="gold-btn" data-go="race" type="button">RIDE</button>
+          </div>
+          <div id="ps-screen-podium" style="display:none">
+            <div class="title">SESSION <span class="gold">STANDINGS</span></div>
+            <p class="hint">DEMO · figures are simulated</p>
+            <button class="gold-btn" data-go="race" type="button">RIDE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <span>Listings are not endorsements.</span>
+    <span>AD · NOT A RANKING</span>
+    <span>DEMO · mock payouts until the live tape is wired</span>
+  </div>
+</div>
+<script src="js/game.js"></script>
+</body>
+</html>
